@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:p="http://www.springframework.org/schema/p"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+        <bean id="book" class="cdxy.demo.lession3.Book">
+            <constructor-arg value="Java"/>
+            <constructor-arg value="Tom"/>
+            <constructor-arg value="80.0"/>
+            <property name="pages" value="300"/>
+        </bean>
+        <bean id="book2" class="cdxy.demo.lession3.Book">
+            <constructor-arg value="C++"/>
+            <constructor-arg value="Tom"/>
+            <constructor-arg value="80.0"/>
+            <property name="pages" value="300"/>
+        </bean>
+
+        <!--Bean的自动装配
+            autowire:可以自动装配Bean
+            byType:根据ioc容器中bean的类型自动装配，确保被装配的类型Bean在容器中唯一
+            byName:必须Bean的名称（id）和属性名设置完全相同
+            缺点：
+                不够灵活，不能分别对不同属性设置装配方式-->
+        <bean id="s1" class="cdxy.demo.lession3.Student"
+        p:name="lisi" p:age="20" autowire="byName"/>
+
+
+    <!--Bean的继承:Spring可以使用parent继承Bean的配置，被继承的Bean称为父Bean，继承这个父Bean的Bean称为子Bean
+        子Bean从父Bean中继承配置，包括Bean的属性配置
+        子Bean可以覆盖从父Bean中继承过来的配置
+        父Bean可以作为一个实例Bean，也可以作为配置模板,作为模板需要设置abstract="true"（容器就不会实例化），可以忽略class属性
+        -->
+        <bean id="add1" class="cdxy.demo.lession3.Address">
+            <property name="province" value="sichuan"/>
+            <property name="city" value="chengdu"/>
+            <property name="street" value="chunxilu"/>
+        </bean>
+        <bean id="add0" abstract="true">
+            <property name="province" value="sichuan"/>
+            <property name="city" value="chengdu"/>
+        </bean>
+        <bean id="add2" class="cdxy.demo.lession3.Address"
+            parent="add0" p:street="niuwangmiao"/>
+
+    <!--Bean的依赖:Spring可以通过depends-on属性设定Bean前置依赖的Bean，
+    前置依赖的Bean需要在本Bean实例化之前创建好
+    如果前置依赖于多个Bean，可以通过逗号，或者空格区分开-->
+    <bean id="s2" class="cdxy.demo.lession3.Student"
+          p:name="lisi" p:age="20" depends-on="add1 book2"/>
+
+    <!--Bean的作用域：在Spring容器中指：创建的Bean对象相对于其它Bean的可见范围
+        Spring中Bean的作用域有5种
+        1.singleton：ioc容器中只有一个共享的Bean实例，也是默认作用域
+            容器在启动时，就会去实例化，并且缓存于容器中
+        2.prototype:每次返回一个新的实例，相当于执行了new Bean()
+            容器在启动时不去实例化
+        总结：对于有状态(有公有属性，可以被不同线程改变)的Bean使用prototype，无状态(没有类的公用属性，不会同时被多个线程改变)的Bean用singleton
+        3.request,session,globalSession 这三种模式，需要用户使用web容器
+        -->
+    <bean id="add4" class="cdxy.demo.lession3.Address" scope="prototype">
+        <property name="province" value="beijing"/>
+        <property name="city" value="beijing"/>
+        <property name="street" value="wudaokou"/>
+    </bean>
+    <bean id="s3" class="cdxy.demo.lession3.Student" p:address-ref="add4"/>
+
+    <!--SpEL:是一个支持运行时查询和操作对象的表达式语言
+        SpEL使用#{},所有在大括号中的字符都被认为是SpEL
+        作用：
+            1.通过Bean的id对Bean进行引用
+            2.可以调用方法以及对象中的属性
+            3.计算表达式的值
+            4.支持正则表达式-->
+    <!--SpEL字面值:意义不大
+        整数：#{100}
+        小数：#{85.5}
+        科学计算法：#{1e8}
+        String：可以用单引号或双引号"#{'hello'}",'#{"hello"}'
+        Boolean：#{false}-->
+    <!--SpEL引用Bean、属性、方法-->
+    <bean id="s5" class="cdxy.demo.lession3.Student">
+        <!--<property name="name" value="#{add2.toString()}"/>
+        <property name="name" value="#{add2.street}"/>-->
+        <property name="name" value="zhangsan"/>
+        <property name="age" value="21"/>
+        <property name="address" value="#{add2}"/>
+    </bean>
+    <!--算术运算 +,-,*,/,%
+        <property name="numb" value="#{20+50}"/>
+        字符串连接符  +
+        <property name="dateStr" value="#{2020+'年'+10+'月'+1+'日'}"/>
+        比较运算 lt(小于),gt（大于）,eq（等于）,ge（大于等于）,le（小于等于）
+        <property name="bool" value="#{100 eq 200}"/>
+        逻辑运算 and，or，not，||，！，&&
+        <property name="bool" value="#{false || true}"/>
+        三目运算 （表达式）?true:false
+        <property name="str" value="#{(10>5)?'ok':'no')}"/>
+        正则表达式 matches
+        <property name="bool" value="#{student.phone  mathches '^1[34578]\d{9}$'}"/>
+        静态属性或方法 T()
+        <property name="numb" value="#{T(java.lang.Math).PI*20*2}"/>
+    -->
+</beans>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

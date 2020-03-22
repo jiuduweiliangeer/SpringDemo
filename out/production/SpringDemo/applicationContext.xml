@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans
+    http://www.springframework.org/schema/beans/spring-beans.xsd">
+    <!--Bean的配置
+        id:容器中对象的唯一标识
+        class：全类名，通过反射创建对象，需要有无参的构造器
+        依赖注入值有3种方式：
+            属性注入:property标签，必须要有setter方法
+            构造器注入，工厂方法注入（淘汰）
+        value作为property标签的子标签
+        <property name="name">
+            <value>world</value>
+        </property>
+    -->
+    <bean id="helloworld" class="cdxy.demo.lession1.HelloWorld">
+        <property name="name" value="world"/>
+        <!--<property name="name">
+            <value>world</value>
+        </property>-->
+    </bean>
+
+</beans>

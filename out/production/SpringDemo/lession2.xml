@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:util="http://www.springframework.org/schema/util"
+       xmlns:p="http://www.springframework.org/schema/p"
+       xsi:schemaLocation="
+       http://www.springframework.org/schema/util
+       http://www.springframework.org/schema/util/spring-util-4.3.xsd
+       http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd">
+    <!--
+        构造器注入：constructor-arg标签必须与构造器参数个数一致
+        type：指定参数类型
+        index:指定参数位置
+        字面值：基础数据类型以及包装类型，String等
+        字面值有特殊符号xxx:需要用<![CDATA[xxx]]>包裹起来，需要使用value标签
+    -->
+    <bean id="book1" class="cdxy.demo.lession2.Book">
+        <constructor-arg value="Tom"/>
+        <constructor-arg index="0">
+            <value><![CDATA[<Java>]]></value>
+        </constructor-arg>
+        <constructor-arg type="double" value="80"/>
+        <property name="pages" value="300"/>
+    </bean>
+    <!--Bean的配置中可以通过ref配置引用类型-->
+    <!--
+        赋null值：<property name="name"><null/></property>
+    -->
+    <bean id="s1" class="cdxy.demo.lession2.Student">
+        <property name="name" value="Jerry"/>
+        <property name="age" value="19"/>
+        <property name="book" ref="book1"/>
+        <!--级联属性：book对象需要存在，需要提供book的getter方法
+           <property name="book.pages" value="200"/>
+       -->
+        <property name="book.pages" value="200"/>
+        <!--内部Bean:不用写id，不能被外部引用
+            <property name="book">
+                <bean class="cdxy.demo.lession2.Book">
+                    <constructor-arg value="Lisi"/>
+                    <constructor-arg index="0" value="c++"/>
+                    <constructor-arg type="double" value="75"/>
+                    <property name="pages" value="300"/>
+                </bean>
+            </property>
+        -->
+    </bean>
+
+    <!--集合属性配置-->
+    <bean id="t1" class="cdxy.demo.lession2.Teacher">
+        <property name="age" value="45"/>
+        <property name="name" value="Wangwu"/>
+        <property name="bookList">
+            <list>
+                <!--通过ref引用外部存在的Bean-->
+                <ref bean="book1"/>
+                <bean class="cdxy.demo.lession2.Book">
+                    <constructor-arg value="Lisi"/>
+                    <constructor-arg index="0" value="c++"/>
+                    <constructor-arg type="double" value="75"/>
+                    <property name="pages" value="300"/>
+                </bean>
+            </list>
+        </property>
+        <property name="bookMap">
+            <!--使用map标签配置Map类型属性-->
+            <map>
+                <entry key="b1" value-ref="book1"/>
+                <entry key="b2">
+                    <bean class="cdxy.demo.lession2.Book">
+                        <constructor-arg value="Lisi"/>
+                        <constructor-arg index="0" value="c++"/>
+                        <constructor-arg type="double" value="75"/>
+                        <property name="pages" value="300"/>
+                    </bean>
+                </entry>
+            </map>
+        </property>
+    </bean>
+
+
+    <!--配置独立的集合Bean，以便多个Bean引用，需要导入util命名空间-->
+    <util:list id="book_list">
+        <ref bean="book1"/>
+        <bean class="cdxy.demo.lession2.Book">
+            <constructor-arg value="Lisi"/>
+            <constructor-arg index="0" value="c++"/>
+            <constructor-arg type="double" value="75"/>
+            <property name="pages" value="300"/>
+        </bean>
+    </util:list>
+    <bean id="t2" class="cdxy.demo.lession2.Teacher">
+        <property name="name" value="Zhaoliu"/>
+        <property name="age" value="50"/>
+        <property name="bookList" ref="book_list"/>
+    </bean>
+    <!--<util:map id="">
+        <entry key="" value-ref=""/>
+    </util:map>-->
+    <!--<util:list id="citys">
+        <value>beijing</value>
+        <value>beijing</value>
+        <value>beijing</value>
+        <value>beijing</value>
+    </util:list>-->
+    <!--P命名空间：简化xml文件的配置
+    使用p命名空间，需要提供setter方法-->
+    <bean id="s2" class="cdxy.demo.lession2.Student"
+          p:age="20" p:name="Zhangsan" p:book-ref="book1"/>
+</beans>

@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+        <!--实例工厂配置Bean
+               1.配置实例工厂的实例
+               2.factory-bean指向实例工厂的Bean
+               3.factory-method指向实例工厂的方法
+               4.constructor-arg通过它给方法传值
+        -->
+       <!-- <bean id="instancePetFactory" class="cdxy.demo.lession4.InstancePetFactory"/>
+        <bean id="pet1" factory-bean="instancePetFactory" factory-method="getPet">
+            <constructor-arg value="erha"/>
+        </bean>-->
+        <!--静态工厂配置Bean
+               1.class指向静态工厂类的全类名
+               2.factory-method指向静态工厂的方法
+               3.constructor-arg通过它给方法传值-->
+       <!-- <bean id="pet2" class="cdxy.demo.lession4.StaticPetFactory"
+                            factory-method="getPet">
+            <constructor-arg value="jinmao"/>
+        </bean>-->
+
+        <!--factoryBean方式配置Bean
+            1.class指向FactoryBean的全类名
+            2.property配置FactoryBean中的属性
+            3.实际上返回的"pet3"是FactoryBean中getBbject()方法返回的实例
+        -->
+       <!-- <bean id="pet3" class="cdxy.demo.lession4.PetFactoryBean">
+            <property name="name" value="lanmao"/>
+        </bean>-->
+
+        <!--Bean的生命周期
+            配置后置处理器
+            1.实例化
+            2.属性赋值
+            3.实例id：pet4
+            4.注入上下文
+            5.自己的init方法执行前
+            6.属性赋值完成
+            7.自己的初始化方法，对应着<bean id='pet4' init-method='init'>
+            8.自己的init方法执行后
+            9.可以执行业务逻辑
+            三月 13, 2020 11:09:51 上午 org.springframework.context.support.ClassPathXmlApplicationContext doClose
+            信息: Closing org.springframework.context.support.ClassPathXmlApplicationContext@5197848c: startup date [Fri Mar 13 11:09:50 CST 2020]; root of context hierarchy
+            10.执行Disposiable的destroy()方法
+            11.执行自己的end(),对应<bean id='pet4' destory-method='end'>-->
+        <bean class="cdxy.demo.lession4.MyBeanPostProcessor"/>
+        <bean id="pet4" class="cdxy.demo.lession4.Pet"
+                        init-method="init" destroy-method="end">
+            <property name="name" value="kaqi"/>
+        </bean>
+
+</beans>
