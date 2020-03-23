@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/context
+       http://www.springframework.org/schema/context/spring-context.xsd">
+    <!--
+        注意：使用注解需要导入spring-aop包
+        组件
+        @Component：基本注解，表示了一个Spring管理的组件
+        @Respository：标识持久层组件
+        @Service：标识业务层
+        @Controller：标识表现层
+        Spring有默认的命名策略：类名，第一个字母小写。
+        扫描组件：
+            在Spring的配置文件中声明<context:component-scan>
+            base-package:指定一个需要扫描的基包
+            resource-pattern:过滤特定的类如：resource-pattern="service/*.class"
+            <context:exclude-filter>子节点表示要排除的目标如：
+                    <context:exclude-filter type="annotation" expression="org.springframework.stereotype.Service"/>
+            <context:include-filter>字节点表示要包含的目标，需要结合use-default-filters属性来使用如：
+                    <context:component-scan base-package="cdxy.demo.lession5"
+                            use-default-filters="false">
+                    <context:include-filter type="annotation" expression="org.springframework.stereotype.Service"/>
+            type:annotation表示标注了xxx注解的类
+                 assignable表示继承或扩展xxx的类
+    </context:component-scan>
+    @Autowired:自动装配Bean的属性，required=false表示属性可以为null,默认不能为null
+        autowired首先会通过类型去查找容器中是否有这个Bean
+        如果容器中同类型的Bean有多个，则通过名字去注入
+        也可以通过注解@Qualifier(value = "userRepositoryImpl")去指定注入那个Bean
+    -->
+    <context:component-scan base-package="cdxy.demo.lession5"/>
+</beans>

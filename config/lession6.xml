@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="
+       http://www.springframework.org/schema/context
+       http://www.springframework.org/schema/context/spring-context.xsd
+       http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd">
+    <!--Spring4.x后有的新功能，泛型依赖注入，主要用于代码简化
+              泛型依赖注入：子类之间的依赖关系由其父类泛型以及父类之间的依赖关系来确定，父类的泛型须为同一类型
+             换句话说：子类之间的依赖关系不用在子类中去声明，而是在父类中声明，
+                      而依赖的关键就是泛型类型，当然必须是相同父类泛型才有依赖关系
+    -->
+    <context:component-scan base-package="cdxy.demo.lession6"/>
+</beans>
