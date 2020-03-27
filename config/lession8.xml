@@ -9,10 +9,15 @@
                            http://www.springframework.org/schema/context/spring-context.xsd
                            http://www.springframework.org/schema/aop
                            http://www.springframework.org/schema/aop/spring-aop.xsd">
+    <!--配置目标bean-->
     <bean id="aspectJImp" class="cdxy.demo.lession8.AspectJImp"/>
+    <!--配置切面bean-->
     <bean id="aspectJ" class="cdxy.demo.lession8.AspectJ"/>
+    <!--配置切面-->
     <aop:config>
+        <!--配置切点-->
         <aop:pointcut id="pointcut" expression="execution(public int cdxy.demo.lession8.AspectJImp.*(int,int))"/>
+        <!--配置通知-->
         <aop:aspect id="aspectj" ref="aspectJ">
             <aop:before method="beforAdvice" pointcut-ref="pointcut"/>
             <aop:after method="AfterAdvice" pointcut-ref="pointcut"/>
@@ -20,5 +25,4 @@
             <aop:after-throwing method="AfterThrowing" pointcut-ref="pointcut" throwing="ex"/>
         </aop:aspect>
     </aop:config>
-
 </beans>
