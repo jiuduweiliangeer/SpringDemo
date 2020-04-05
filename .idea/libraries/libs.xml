@@ -1,0 +1,12 @@
+<component name="libraryTable">
+  <library name="libs">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/web/WEB-INF/libs/spring-jdbc-4.3.6.RELEASE.jar!/" />
+      <root url="jar://$PROJECT_DIR$/web/WEB-INF/libs/spring-tx-4.3.6.RELEASE.jar!/" />
+      <root url="file://$PROJECT_DIR$/web/WEB-INF/libs" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+    <jarDirectory url="file://$PROJECT_DIR$/web/WEB-INF/libs" recursive="false" />
+  </library>
+</component>
