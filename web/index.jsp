@@ -11,6 +11,11 @@
     <title>$Title$</title>
   </head>
   <body>
-  $END$
+    <h1>this is index.jsp</h1>
+    <h1><a href="hello">hello</a></h1>
+    <h1><a href="method">DemoProduces</a></h1>
+    <h1><a href="method1">DemoCookie</a></h1>
+    <h1><a href="method2?name=tom">DemoParam</a></h1>
+    <h1><a href="method3/123">DemoPath</a></h1>
   </body>
 </html>
