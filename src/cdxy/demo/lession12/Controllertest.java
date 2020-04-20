@@ -1,7 +1,15 @@
 package cdxy.demo.lession12;
 
+import cdxy.demo.lession12.pojo.User;
+import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
+
+import javax.servlet.ServletInputStream;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.io.*;
+import java.util.Locale;
 
 @Controller
 public class Controllertest {
@@ -30,6 +38,26 @@ public class Controllertest {
     @RequestMapping(value="/method3/{numb}")
     public String method3(@PathVariable("numb") Integer size){
         System.out.println(size);
+        return "hello";
+    }
+    @RequestMapping("/method4")
+    public String method4(User user){
+        System.out.println(user);
+        return "hello";
+    }
+    @RequestMapping("/method5")
+    public String method5(HttpServletRequest request,
+                          InputStream inputStream,
+                          Locale locale){
+        String language=locale.getDisplayLanguage();
+        try {
+            InputStream inputStream1=request.getInputStream();
+            System.out.println("language:"+language);
+            System.out.println("request.getInputStream():"+inputStream1);
+            System.out.println("InputStream:"+inputStream);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         return "hello";
     }
 }
