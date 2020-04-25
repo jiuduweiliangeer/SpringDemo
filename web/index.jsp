@@ -25,5 +25,20 @@
     <h1><a href="method2?name=tom">DemoParam</a></h1>
     <h1><a href="method3/123">DemoPath</a></h1>
     <h1><a href="method5">DemoAidMethodRecipteServletAPIParam</a></h1>
+  --------------------------------------lession13----------------------------------------------------
+    <h2>lession13</h2>
+    <h2><a href="lession13/method1?name=tom">TestMap</a></h2>
+    <h2><a href="lession13/method2?name=jerry">TestModelAttributesReturnNo</a></h2>
+    <h2><a href="lession13/method3">TestModelAttributesReturn1</a></h2>
+    <h2><a href="lession13/method4">TestModelAttributesReturn2</a></h2>
+    <h2><a href="lession13/method5">TestModleAttributesReturn3</a></h2>
+    <h2><a href="lession13/method6">TestModleAttributesReturnNo2</a></h2>
+    <form action="lession13/method7" method="post">
+        ID:      <input type="hidden" name="id" value="5"><br>
+        USERNAME:<input type="text" name="username" value="Trump"><br>
+        PASSWORD:<input type="text" name="age" value="65"><br>
+        EMAIL:   <input type="text" name="email" value="64030931@qq.com"><br>
+        <input type="submit" value="修改">
+    </form>
   </body>
 </html>

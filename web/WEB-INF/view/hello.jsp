@@ -12,5 +12,10 @@
 </head>
 <body>
     <h2>this is hello.jsp</h2>
+    name:${name}<br>
+    requestScope.username:${requestScope.username}<br>
+    requestScope.user.email:${requestScope.user.email}<br>
+    requestScope.yh.email:${requestScope.yh.email}<br>
+    requestScope.string:${requestScope.string}<br>
 </body>
 </html>
