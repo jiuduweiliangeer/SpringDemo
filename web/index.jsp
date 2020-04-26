@@ -18,13 +18,13 @@
       email<input type="text" name="email"><br>
       <input type="submit" value="提交"><br>
   </form>
-    <h1>this is index.jsp</h1>
-    <h1><a href="hello">hello</a></h1>
-    <h1><a href="method">DemoProduces</a></h1>
-    <h1><a href="method1">DemoCookie</a></h1>
-    <h1><a href="method2?name=tom">DemoParam</a></h1>
-    <h1><a href="method3/123">DemoPath</a></h1>
-    <h1><a href="method5">DemoAidMethodRecipteServletAPIParam</a></h1>
+    <h2>this is index.jsp</h2>
+    <h2><a href="hello">hello</a></h2>
+    <h2><a href="method">DemoProduces</a></h2>
+    <h2><a href="method1">DemoCookie</a></h2>
+    <h2><a href="method2?name=tom">DemoParam</a></h2>
+    <h2><a href="method3/123">DemoPath</a></h2>
+    <h2><a href="method5">DemoAidMethodRecipteServletAPIParam</a></h2>
   --------------------------------------lession13----------------------------------------------------
     <h2>lession13</h2>
     <h2><a href="lession13/method1?name=tom">TestMap</a></h2>
@@ -40,5 +40,7 @@
         EMAIL:   <input type="text" name="email" value="64030931@qq.com"><br>
         <input type="submit" value="修改">
     </form>
+    <h2><a href="lession16_17/method1">TestRedirect</a></h2>
+    <h2><a href="users">accessList.jsp</a></h2>
   </body>
 </html>
