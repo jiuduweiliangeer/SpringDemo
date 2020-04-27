@@ -21,6 +21,5 @@ public class test {
         String sql="SELECT uid FROM project_stu WHERE username = ?";
         double s=jdbcTemplate.queryForObject(sql,double.class,"demo");
         System.out.println(s);
-
     }
 }
