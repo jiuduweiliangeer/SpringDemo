@@ -24,7 +24,7 @@ public class TeacherController {
         map.put("teacher",teacherDaoI.getAll());
         return "lession16_17/list";
     }
-    //进入input页面
+    //进入input新增页面
     @RequestMapping( value ="/teacher",method = RequestMethod.GET)
     public String input(Map<String,Object> map){
         Map<Integer,String> genders=new HashMap<>();
@@ -35,9 +35,10 @@ public class TeacherController {
         map.put("teacher",new Teacher());
         return "lession16_17/input";
     }
-    //新增或者修改数据
+    //新增or修改数据
     @RequestMapping(value = "/teacher",method = RequestMethod.POST)
     public String save(Teacher teacher){
+        System.out.println(teacher);
         teacherDaoI.saveAndUpdate(teacher);
         return "redirect:/teachers";
     }
@@ -47,8 +48,15 @@ public class TeacherController {
         teacherDaoI.delete(id);
         return "redirect:/teachers";
     }
+    //进入input修改页面
     @RequestMapping(value = "/teacher/{id}",method = RequestMethod.GET)
-    public String input(){
-     return "redirect:/teachers";
+    public String input(@PathVariable("id") Integer id,Map<String,Object> map){
+        Map<Integer,String> genders=new HashMap<>();
+        genders.put(1,"M");
+        genders.put(0,"W");
+        map.put("genders",genders);
+        map.put("departements",departementDaoI.getAll());
+        map.put("teacher",teacherDaoI.getTeacherByID(id));
+        return "lession16_17/input";
     }
 }

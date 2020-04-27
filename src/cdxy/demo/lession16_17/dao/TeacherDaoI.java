@@ -35,6 +35,11 @@ public class TeacherDaoI {
             Departement departement=departementDaoI.getDepartmentById(departementID);
             teacher.setDepartement(departement);
             teacherMap.put(initID,teacher);
+        }else{
+            Integer departementID=teacher.getDepartement().getId();
+            Departement departement=departementDaoI.getDepartmentById(departementID);
+            teacher.setDepartement(departement);
+            teacherMap.put(teacher.getId(),teacher);
         }
     }
     public void delete(Integer id){

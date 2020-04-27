@@ -32,7 +32,7 @@
                     <td>${th.gender==1?'男':'女'}</td>
                     <td>${th.email}</td>
                     <td>${th.departement.departementname}</td>
-                    <td><a href="">edit</a></td>
+                    <td><a href="teacher/${th.id}">edit</a></td>
                     <td><a href="javascript:void(0)" onclick="del(${th.id})">delete</a></td>
                 </tr>
             </c:forEach>

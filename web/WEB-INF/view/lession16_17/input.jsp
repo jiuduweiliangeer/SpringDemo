@@ -13,7 +13,8 @@
 </head>
 <body>
     <%--spring表单，必须传入对象，通过path自动绑定属性到控件（name）--%>
-    <form:form action="${pageContext.request.contextPath}/teacher" method="post" modelAttribute="teacher">
+    <form:form action="${pageContext.request.contextPath}/teacher" method="post" modelAttribute="teacher" >
+      <form:hidden path="id" value="${teacher.id}"/>
       username:<form:input path="username"/><br>
       password:<form:input path="password"/><br>
       gender:<form:radiobuttons path="gender"
