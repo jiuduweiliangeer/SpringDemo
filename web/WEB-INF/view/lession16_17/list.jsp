@@ -7,6 +7,7 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <html>
 <head>
     <title>List</title>
@@ -32,11 +33,19 @@
                     <td>${th.email}</td>
                     <td>${th.departement.departementname}</td>
                     <td><a href="">edit</a></td>
-                    <td><a href="">delete</a></td>
+                    <td><a href="javascript:void(0)" onclick="del(${th.id})">delete</a></td>
                 </tr>
             </c:forEach>
         </table>
     </c:if>
-
+    <a href="teacher">新增</a>
+    <form:form id="deleteForm" action="${pageContext.request.contextPath}" method="delete"/>
 </body>
+<script>
+    function del(id) {
+        var formObj=document.getElementById("deleteForm");
+        formObj.action=formObj.action+"/teacher/"+id;
+        formObj.submit();
+    }
+</script>
 </html>

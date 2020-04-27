@@ -21,11 +21,23 @@ public class TeacherDaoI {
         teacherMap.put(103,new Teacher(103,"trump","123456",1,"trump@qq.com",new Departement(1,"computer")));
         teacherMap.put(104,new Teacher(104,"Ombama","123456",0,"Ombama@qq.com",new Departement(1,"computer")));
     }
-    private static Integer initID=105;
+    private static Integer initID=104;
     public Collection<Teacher> getAll(){
         return teacherMap.values();
     }
     public Teacher getTeacherByID(Integer id){
         return teacherMap.get(id);
+    }
+    public void saveAndUpdate(Teacher teacher){
+        if (teacher.getId()==null){
+            teacher.setId(++initID);
+            Integer departementID=teacher.getDepartement().getId();
+            Departement departement=departementDaoI.getDepartmentById(departementID);
+            teacher.setDepartement(departement);
+            teacherMap.put(initID,teacher);
+        }
+    }
+    public void delete(Integer id){
+        teacherMap.remove(id);
     }
 }
